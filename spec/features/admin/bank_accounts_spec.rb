@@ -10,15 +10,7 @@ feature 'Admin - Supplier Bank Accounts', js: true do
   context 'as a Supplier' do
 
     before do
-      @user = create :supplier_user
-      # login_user @user
-      visit spree.root_path
-      click_link 'Login'
-      fill_in 'spree_user[email]', with: @user.email
-      fill_in 'spree_user[password]', with: 'secret'
-      click_button 'Login'
-      page.should_not have_content 'Login'
-
+      login_user create(:supplier_user)
       visit spree.account_path
       within 'dd.supplier-info' do
         click_link 'Edit'

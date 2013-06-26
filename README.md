@@ -1,6 +1,11 @@
 SpreeMarketplace
 ================
 
+[![Build Status](https://secure.travis-ci.org/jdutil/spree_marketplace.png)](http://travis-ci.org/jdutil/spree_marketplace)
+[![Code Climate](https://codeclimate.com/github/jdutil/spree_marketplace.png)](https://codeclimate.com/github/jdutil/spree_marketplace)
+[![Coverage Status](https://coveralls.io/repos/jdutil/spree_marketplace/badge.png?branch=master)](https://coveralls.io/r/jdutil/spree_marketplace)
+[![Dependency Status](https://gemnasium.com/jdutil/spree_marketplace.png?travis)](https://gemnasium.com/jdutil/spree_marketplace)
+
 Spree Marketplace uses the [Spree Drop Ship](https://github.com/jdutil/spree_drop_ship) extension in order to enable using Spree as a Marketplace.  Mainly all that really means is that this extension enables sending payments to your drop ship suppliers through [Balanced Payments](http://balancedpayments.com), however I would like to add support for Stripe as well now that they are also beginning to offer payment services.
 
 All the other main marketplace functionality - such as - vendors, product setup, shipment details etc... is all accomplished by [Spree Drop Ship](https://github.com/jdutil/spree_drop_ship).
