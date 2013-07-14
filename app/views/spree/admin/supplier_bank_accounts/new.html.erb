@@ -25,5 +25,5 @@
     <%= f.label :type %>:<br />
     <%= f.select :type, [[I18n.t(:checking), 'checking'], [I18n.t(:savings), 'savings']], {}, class: 'fullwidth select2' %>
   <% end %>
-  <%= f.submit I18n.t('save') %>
+  <%= f.submit Spree.t('save') %>
 <% end %>
