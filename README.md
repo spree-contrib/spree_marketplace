@@ -47,6 +47,9 @@ require 'spree_marketplace/factories'
 TODO
 ----
 
+- On dso complete credit supplier bank account
+- On order complete credit marketplace bank account w/commission
+- On order complete credit marketplace bank account w/tax?
 - De-couple Supplier payments from [Balanced Payments](https://www.balancedpayments.com/) so that Balanced is not required to use this extension but could be added w/say spree_balanced_marketplace.  Or make code detect between balanced or stripe payments properly?
 
 Copyright (c) 2013 [Jeff Dutil](https://github.com/jdutil), released under the New BSD License
