@@ -26,6 +26,17 @@ bundle
 bundle exec rails g spree_marketplace:install
 ```
 
+Configuration
+-------------
+
+Once installed you must configure your [Balanced Payments](https://www.balancedpayments.com/) API key.  To do so you have two options:
+
+1) Simply setup Balanced as your payment processing method and spree_marketplace will use your payment methods api key.
+
+2) Configure in an initializer by adding the following to the end of your `config/intializers/spree.rb`:
+
+    SpreeMarketplace::Config[:balanced_api_key] = 'YourKey'
+
 Testing
 -------
 
