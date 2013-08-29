@@ -27,7 +27,7 @@ Spree::Supplier.class_eval do
       customer.attributes['name'] = self.name
       customer.attributes['email'] = self.email
       customer.attributes['business_name'] = self.name
-      customer.attributes['ein'] = self.tax_id
+      customer.attributes['ein'] = self.tax_id if self.tax_id.present?
       customer.attributes['phone'] = self.address.try(:phone)
       customer.attributes['address']['line1'] = self.address.try(:address1)
       customer.attributes['address']['line2'] = self.address.try(:address2)
