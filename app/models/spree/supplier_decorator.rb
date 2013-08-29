@@ -37,6 +37,7 @@ Spree::Supplier.class_eval do
       customer.attributes['address']['country_code'] = (self.address.try(:country) ? self.address.country.iso : nil)
       customer.save
     end
+  rescue Balanced::BadRequest
     return true # always return true so AR saving continues even if customer.save fails.
   end
 end
