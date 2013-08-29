@@ -21,7 +21,7 @@ Spree::Supplier.class_eval do
   end
 
   def balanced_customer_update
-    unless new_record?
+    unless new_record? or !changed?
       Balanced.configure(SpreeMarketplace::Config[:balanced_api_key])
       customer = Balanced::Customer.find(self.token)
       customer.attributes['name'] = self.name
