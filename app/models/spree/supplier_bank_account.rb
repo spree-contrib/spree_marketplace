@@ -37,7 +37,7 @@ module Spree
     def balanced_api_call
       return if self.account_number.blank? or self.name.blank? or self.routing_number.blank? or self.type.blank?
       Balanced.configure(SpreeMarketplace::Config[:balanced_api_key])
-      merchant_account = Balanced::Account.find(self.supplier.token)
+      merchant_account = Balanced::Customer.find(self.supplier.token)
       bank_account = Balanced::BankAccount.new(
         :routing_number => self.routing_number,
         :type           => self.type,
