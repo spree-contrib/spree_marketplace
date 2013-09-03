@@ -10,12 +10,20 @@ Spree::Supplier.class_eval do
   def balanced_customer_setup
     Balanced.configure(SpreeMarketplace::Config[:balanced_api_key])
 
-    merchant_data = {
-      :name => self.name,
-      :email => self.email,
-      :business_name => self.name,
-      :ein => self.tax_id
-    }
+    merchant_data = if self.tax_id.present?
+      {
+        :email => self.email,
+        :name => self.name,
+        :business_name => self.name,
+        :ein => self.tax_id
+      }
+    else
+      {
+        :email => self.email,
+        :name => self.name
+      }
+    end
+
     customer = Balanced::Marketplace.mine.create_customer merchant_data
     self.token = customer.uri
   end
@@ -26,15 +34,19 @@ Spree::Supplier.class_eval do
       customer = Balanced::Customer.find(self.token)
       customer.attributes['name'] = self.name
       customer.attributes['email'] = self.email
-      customer.attributes['business_name'] = self.name
-      customer.attributes['ein'] = self.tax_id if self.tax_id.present?
-      customer.attributes['phone'] = self.address.try(:phone)
-      customer.attributes['address']['line1'] = self.address.try(:address1)
-      customer.attributes['address']['line2'] = self.address.try(:address2)
-      customer.attributes['address']['city'] = self.address.try(:city)
-      customer.attributes['address']['state'] = (self.address.try(:state) ? self.address.state.name : nil)
-      customer.attributes['address']['postal_code'] = self.address.try(:zipcode)
-      customer.attributes['address']['country_code'] = (self.address.try(:country) ? self.address.country.iso : nil)
+      if self.tax_id.present?
+        customer.attributes['business_name'] = self.name
+        customer.attributes['ein'] = self.tax_id
+      end
+      if self.address.present?
+        customer.attributes['phone'] = self.address.phone
+        customer.attributes['address']['line1'] = self.address.address1
+        customer.attributes['address']['line2'] = self.address.address2
+        customer.attributes['address']['city'] = self.address.city
+        customer.attributes['address']['state'] = (self.address.state ? self.address.state.name : nil)
+        customer.attributes['address']['postal_code'] = self.address.zipcode
+        customer.attributes['address']['country_code'] = (self.address.country ? self.address.country.iso : nil)
+      end
       customer.save
     end
   rescue Balanced::BadRequest
