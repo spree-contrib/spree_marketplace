@@ -24,7 +24,7 @@ Spree::Supplier.class_eval do
       }
     end
 
-    customer = Balanced::Marketplace.mine.create_customer merchant_data
+    customer = Balanced::Customer.new(merchant_data).save
     self.token = customer.uri
   end
 
