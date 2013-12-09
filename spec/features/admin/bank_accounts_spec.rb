@@ -7,31 +7,42 @@ feature 'Admin - Supplier Bank Accounts', js: true do
     create(:state, name: "Vermont", country: country)
   end
 
-  context 'as a Supplier' do
+  context 'w/Stripe' do
 
     before do
-      login_user create(:supplier_user)
-      visit spree.account_path
-      within 'dd.supplier-info' do
-        click_link 'Edit'
-      end
+      SpreeMarketplace::Config[:stripe_publishable_key] = 'pk_test_DIeu8D1IIjLId2xA02TEJthB'
+      SpreeMarketplace::Config[:stripe_secret_key] = 'sk_test_2K6AkjxetfMFks2xBoGKB6wy'
     end
 
-    scenario 'adding and verifying bank accounts should work' do
-      click_link 'Add Bank Account'
-      fill_in 'supplier_bank_account[name]', with: 'Test Supplier'
-      fill_in 'supplier_bank_account[account_number]', with: '9900000002'
-      fill_in 'supplier_bank_account[routing_number]', with: '021000021'
-      select2 'Checking', from: 'Type'
-      click_button 'Save'
-      page.should have_content('xxxxxx0002 - Unverified')
-      page.should have_content('Two small deposits will be made within 2 business days.  Please verify your bank account once you know the amounts.')
+    context 'as a Supplier' do
 
-      click_link 'Verify'
-      fill_in 'supplier_bank_account[amount_1]', with: '1'
-      fill_in 'supplier_bank_account[amount_2]', with: '1'
-      click_button 'Verify'
-      page.should have_content('xxxxxx0002 - Verified')
+      before do
+        login_user create(:supplier_user)
+        visit spree.account_path
+        within 'dd.supplier-info' do
+          click_link 'Edit'
+        end
+      end
+
+      scenario 'adding bank accounts should work' do
+        click_link 'Add Bank Account'
+        fill_in 'supplier_bank_account[account_number]', with: '000123456789'
+        fill_in 'supplier_bank_account[routing_number]', with: '110000000'
+        select2 'United States', from: 'Country'
+        click_button 'Save'
+        page.should have_content('xxxxxx6789')
+        page.should have_content('Supplier bank account "STRIPE TEST BANK" has been successfully created!')
+      end
+
+      scenario 'adding invalid bank accounts should display error' do
+        click_link 'Add Bank Account'
+        fill_in 'supplier_bank_account[account_number]', with: '111111111111'
+        fill_in 'supplier_bank_account[routing_number]', with: '110000000'
+        select2 'United States', from: 'Country'
+        click_button 'Save'
+        page.should have_content('Must only use a test bank account number when making transfers in test mode')
+      end
+
     end
 
   end

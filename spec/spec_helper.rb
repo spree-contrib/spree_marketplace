@@ -73,7 +73,6 @@ RSpec.configure do |config|
     DatabaseCleaner.start
     # Set some configuration defaults.
     ActionMailer::Base.default_url_options[:host] = 'localhost'
-    SpreeMarketplace::Config[:balanced_api_key] = '12e8a77cad5411e290f6026ba7cac9da'
   end
 
   # After each spec clean the database.

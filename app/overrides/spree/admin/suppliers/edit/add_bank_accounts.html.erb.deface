@@ -5,10 +5,8 @@
   <ol>
     <% @supplier.bank_accounts.each do |bank_account| %>
       <li>
-        <%= bank_account.masked_number %> - <%= bank_account.verification_status %>
-        <% unless bank_account.verified? %>
-          <%= link_to '(' + I18n.t(:verify) + ')', spree.edit_admin_supplier_bank_account_path(@supplier, bank_account) %>
-        <% end %>
+        <%= bank_account.name %> - <%= bank_account.masked_number %>
+        <!-- TODO Add a remove link? -->
       </li>
     <% end %>
   </ol>

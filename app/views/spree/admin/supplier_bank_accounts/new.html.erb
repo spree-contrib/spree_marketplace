@@ -6,24 +6,23 @@
    <%= I18n.t '.new_bank_account' %>
 <% end %>
 
-<%= render 'spree/shared/error_messages', :target => @object %>
+<div id='stripeError' class='errorExplanation' style='display:none;'></div>
 
 <%= form_for @object, url: spree.admin_supplier_bank_accounts_path(@supplier) do |f| %>
-  <%= f.field_container :name do %>
-    <%= f.label :name %>:<br />
-    <%= f.text_field :name, :class => 'fullwidth' %>
-  <% end %>
   <%= f.field_container :account_number do %>
     <%= f.label :account_number %>:<br />
-    <%= f.text_field :account_number, :class => 'fullwidth' %>
+    <%= f.text_field :account_number %>
   <% end %>
   <%= f.field_container :routing_number do %>
     <%= f.label :routing_number %>:<br />
-    <%= f.text_field :routing_number, :class => 'fullwidth' %>
+    <%= f.text_field :routing_number %>
   <% end %>
-  <%= f.field_container :type do %>
-    <%= f.label :type %>:<br />
-    <%= f.select :type, [[I18n.t(:checking), 'checking'], [I18n.t(:savings), 'savings']], {}, class: 'fullwidth select2' %>
+  <%= f.field_container :country_iso do %>
+    <%= f.label :country_iso, Spree.t(:country) %>:<br />
+    <%= f.collection_select :country_iso, available_countries, :iso, :name, {selected: 'US'}, {class: 'select2'} %>
   <% end %>
-  <%= f.submit Spree.t('save') %>
+  <%= f.hidden_field :masked_number %>
+  <%= f.hidden_field :name %>
+  <%= f.hidden_field :token %>
+  <%= f.submit Spree.t(:save) %>
 <% end %>
