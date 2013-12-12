@@ -1,23 +1,49 @@
 Spree::Supplier.class_eval do
 
-  has_many   :bank_accounts, class_name: 'Spree::SupplierBankAccount'
+  has_many :bank_accounts, class_name: 'Spree::SupplierBankAccount'
 
-  # before_create :stripe_recipient_setup
+  # TODO move to spree_marketplace? not really used anywhere in here
+  validates :tax_id,                 length: { is: 9, allow_blank: true }
+
+  before_create :stripe_recipient_setup
+  before_save :stripe_recipient_update
 
   private
 
-  # TODO do we actually need bank account first or can we just update later?
   def stripe_recipient_setup
-    Stripe.api_key = SpreeMarketplace::Config[:stripe_secret_key]
+    Stripe.api_key = Spree::Config[:stripe_secret_key]
 
     recipient = Stripe::Recipient.create(
-      :name => self.name,
-      :type => (self.tax_id.present? ? 'business' : "individual"),
+      :name => (self.tax_id.present? ? self.name : self.address.first_name + ' ' + self.address.last_name),
+      :type => (self.tax_id.present? ? 'corporation' : "individual"),
       :email => self.email,
-      :bank_account => bank_accounts.first.token
+      :bank_account => self.bank_accounts.first.try(:token)
     )
-    Rails.logger.debug "RECIPIENT: #{recipient.inspect}"
-    self.token = recipient.id
+
+    if new_record?
+      self.token = recipient.id
+    else
+      self.update_column :token, recipient.id
+    end
+  end
+
+  def stripe_recipient_update
+    unless new_record? or !changed?
+      Stripe.api_key = Spree::Config[:stripe_secret_key]
+      if token.present?
+        rp = Stripe::Recipient.retrieve(token)
+        rp.name  = name
+        rp.email = email
+        if tax_id.present?
+          rp.tax_id = tax_id
+          rp.type   = 'corporation'
+        end
+        rp.bank_account = bank_accounts.first.token if bank_accounts.first
+        rp.save
+      else
+        stripe_recipient_setup
+      end
+    end
   end
 
 end
