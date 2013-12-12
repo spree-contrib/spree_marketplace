@@ -11,7 +11,7 @@ Spree::Supplier.class_eval do
   private
 
   def stripe_recipient_setup
-    Stripe.api_key = Spree::Config[:stripe_secret_key]
+    Stripe.api_key = SpreeMarketplace::Config[:stripe_secret_key]
 
     recipient = Stripe::Recipient.create(
       :name => (self.tax_id.present? ? self.name : self.address.first_name + ' ' + self.address.last_name),
@@ -29,7 +29,7 @@ Spree::Supplier.class_eval do
 
   def stripe_recipient_update
     unless new_record? or !changed?
-      Stripe.api_key = Spree::Config[:stripe_secret_key]
+      Stripe.api_key = SpreeMarketplace::Config[:stripe_secret_key]
       if token.present?
         rp = Stripe::Recipient.retrieve(token)
         rp.name  = name
