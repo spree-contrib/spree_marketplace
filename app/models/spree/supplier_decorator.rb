@@ -11,6 +11,7 @@ Spree::Supplier.class_eval do
   private
 
   def stripe_recipient_setup
+    return if self.tax_id.blank? and self.address.blank?
     Stripe.api_key = SpreeMarketplace::Config[:stripe_secret_key]
 
     recipient = Stripe::Recipient.create(
