@@ -29,7 +29,7 @@ require 'spree_marketplace/factories'
 require 'vcr'
 VCR.configure do |c|
   c.allow_http_connections_when_no_cassette = true
-  c.cassette_library_dir = 'tmp/vcr_cassettes'
+  c.cassette_library_dir = 'spec/vcr_cassettes'
   c.hook_into :webmock # or :fakeweb
   c.ignore_localhost = true
 end
@@ -65,6 +65,7 @@ RSpec.configure do |config|
   config.before :suite do
     DatabaseCleaner.strategy = :transaction
     DatabaseCleaner.clean_with :truncation
+    Stripe.api_key = 'sk_test_2K6AkjxetfMFks2xBoGKB6wy'
   end
 
   # Before each spec check if it is a Javascript test and switch between using database transactions or not where necessary.

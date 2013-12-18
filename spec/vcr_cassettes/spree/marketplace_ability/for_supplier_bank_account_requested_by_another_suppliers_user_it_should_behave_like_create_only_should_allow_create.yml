@@ -1,0 +1,135 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: https://api.stripe.com/v1/recipients
+    body:
+      encoding: US-ASCII
+      string: name=John%20Doe&type=individual&email=cheyanne%40goodwin.biz
+    headers:
+      Accept:
+      - '*/*; q=0.5, application/xml'
+      Accept-Encoding:
+      - gzip, deflate
+      User-Agent:
+      - Stripe/v1 RubyBindings/1.9.9
+      Authorization:
+      - Bearer sk_test_2K6AkjxetfMFks2xBoGKB6wy
+      Content-Type:
+      - application/x-www-form-urlencoded
+      X-Stripe-Client-User-Agent:
+      - '{"bindings_version":"1.9.9","lang":"ruby","lang_version":"2.0.0 p353 (2013-11-22)","platform":"x86_64-darwin13.0.0","publisher":"stripe","uname":"Darwin
+        Jeffs-MacBook-Pro.local 13.0.0 Darwin Kernel Version 13.0.0: Thu Sep 19 22:22:27
+        PDT 2013; root:xnu-2422.1.72~6/RELEASE_X86_64 x86_64"}'
+      Content-Length:
+      - '60'
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Server:
+      - nginx
+      Date:
+      - Wed, 18 Dec 2013 16:02:47 GMT
+      Content-Type:
+      - application/json;charset=utf-8
+      Content-Length:
+      - '282'
+      Connection:
+      - keep-alive
+      Access-Control-Max-Age:
+      - '300'
+      Access-Control-Allow-Methods:
+      - GET, POST, HEAD, OPTIONS, DELETE
+      Access-Control-Allow-Credentials:
+      - 'true'
+      Cache-Control:
+      - no-cache, no-store
+      Strict-Transport-Security:
+      - max-age=31556926; includeSubDomains
+    body:
+      encoding: UTF-8
+      string: |
+        {
+          "id": "rp_10394w2ZrWrq8HpzS3Sg5NdF",
+          "object": "recipient",
+          "created": 1387382567,
+          "livemode": false,
+          "type": "individual",
+          "description": null,
+          "email": "cheyanne@goodwin.biz",
+          "name": "John Doe",
+          "verified": false,
+          "metadata": {},
+          "active_account": null
+        }
+    http_version: 
+  recorded_at: Wed, 18 Dec 2013 16:02:47 GMT
+- request:
+    method: post
+    uri: https://api.stripe.com/v1/recipients
+    body:
+      encoding: US-ASCII
+      string: name=John%20Doe&type=individual&email=arnulfo%40kiehn.biz
+    headers:
+      Accept:
+      - '*/*; q=0.5, application/xml'
+      Accept-Encoding:
+      - gzip, deflate
+      User-Agent:
+      - Stripe/v1 RubyBindings/1.9.9
+      Authorization:
+      - Bearer sk_test_2K6AkjxetfMFks2xBoGKB6wy
+      Content-Type:
+      - application/x-www-form-urlencoded
+      X-Stripe-Client-User-Agent:
+      - '{"bindings_version":"1.9.9","lang":"ruby","lang_version":"2.0.0 p353 (2013-11-22)","platform":"x86_64-darwin13.0.0","publisher":"stripe","uname":"Darwin
+        Jeffs-MacBook-Pro.local 13.0.0 Darwin Kernel Version 13.0.0: Thu Sep 19 22:22:27
+        PDT 2013; root:xnu-2422.1.72~6/RELEASE_X86_64 x86_64"}'
+      Content-Length:
+      - '57'
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Server:
+      - nginx
+      Date:
+      - Wed, 18 Dec 2013 16:02:48 GMT
+      Content-Type:
+      - application/json;charset=utf-8
+      Content-Length:
+      - '279'
+      Connection:
+      - keep-alive
+      Access-Control-Allow-Methods:
+      - GET, POST, HEAD, OPTIONS, DELETE
+      Access-Control-Max-Age:
+      - '300'
+      Access-Control-Allow-Credentials:
+      - 'true'
+      Cache-Control:
+      - no-cache, no-store
+      Strict-Transport-Security:
+      - max-age=31556926; includeSubDomains
+    body:
+      encoding: UTF-8
+      string: |
+        {
+          "id": "rp_10394w2ZrWrq8HpzVtLTSrTH",
+          "object": "recipient",
+          "created": 1387382568,
+          "livemode": false,
+          "type": "individual",
+          "description": null,
+          "email": "arnulfo@kiehn.biz",
+          "name": "John Doe",
+          "verified": false,
+          "metadata": {},
+          "active_account": null
+        }
+    http_version: 
+  recorded_at: Wed, 18 Dec 2013 16:02:48 GMT
+recorded_with: VCR 2.8.0
