@@ -15,6 +15,10 @@ module SpreeMarketplace
       SpreeMarketplace::Config = Spree::MarketplaceConfiguration.new
     end
 
+    config.after_initialize do
+      Stripe.api_key = SpreeMarketplace::Config[:stripe_secret_key]
+    end
+
     def self.activate
       Dir.glob(File.join(File.dirname(__FILE__), '../../app/**/*_decorator*.rb')) do |c|
         Rails.configuration.cache_classes ? require(c) : load(c)
