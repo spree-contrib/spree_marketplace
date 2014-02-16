@@ -1,3 +1,16 @@
+require 'spree_drop_ship/factories'
+
+FactoryGirl.modify do
+  factory :supplier, :class => Spree::Supplier do
+    sequence(:name) { |i| "Big Store #{i}" }
+    email { Faker::Internet.email }
+    first_name 'First'
+    last_name 'Last'
+    url "http://example.com"
+    address
+  end
+end
+
 FactoryGirl.define do
   # Define your Spree extensions Factories within this file to enable applications, and other extensions to use and override them.
   #
