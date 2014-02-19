@@ -17,7 +17,7 @@ Gem::Specification.new do |s|
   s.requirements << 'none'
 
   s.add_dependency 'stripe'
-  s.add_dependency 'spree_core', '~> 2.0.7'
+  s.add_dependency 'spree_core', '~> 2.1.0'
   s.add_dependency 'spree_drop_ship'
 
   s.add_development_dependency 'capybara', '~> 2.1'

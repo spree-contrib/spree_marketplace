@@ -61,6 +61,7 @@ require 'spree_marketplace/factories'
 TODO
 ----
 
+- permit attributes in controller
 - On dso complete credit supplier bank account
 - On order complete credit marketplace bank account w/commission
 - On order complete credit marketplace bank account w/tax?
