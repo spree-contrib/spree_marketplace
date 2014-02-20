@@ -2,6 +2,7 @@ module Spree
   class SupplierBankAccount < ActiveRecord::Base
 
     attr_accessor :account_number, :routing_number
+    attr_accessible :country_iso, :masked_number, :name, :token
 
     belongs_to :supplier
 
