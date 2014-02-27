@@ -43,7 +43,6 @@ Spree::Supplier.class_eval do
         rp.email = email
         if tax_id.present?
           rp.tax_id = tax_id
-          rp.type   = (self.merchant_type == 'business' ? 'corporation' : "individual")
         end
         rp.bank_account = bank_accounts.first.token if bank_accounts.first
         rp.save
