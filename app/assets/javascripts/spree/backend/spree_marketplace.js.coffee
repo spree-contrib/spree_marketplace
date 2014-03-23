@@ -1,4 +1,4 @@
-#= require admin/spree_backend
+#= require spree/backend
 
 $(document).ready ->
   if $('.new_supplier_bank_account').length > 0
