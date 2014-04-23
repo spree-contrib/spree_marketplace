@@ -10,7 +10,7 @@ class Spree::Admin::SupplierBankAccountsController < Spree::Admin::ResourceContr
   private
 
     def load_supplier
-      @supplier = Spree::Supplier.find(params[:supplier_id])
+      @supplier = Spree::Supplier.friendly.find(params[:supplier_id])
     end
 
     def location_after_save
