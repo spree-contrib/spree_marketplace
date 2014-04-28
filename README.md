@@ -10,6 +10,21 @@ Spree Marketplace uses the [Spree Drop Ship](https://github.com/jdutil/spree_dro
 
 All the other main marketplace functionality - such as - vendors, product setup, shipment details etc... is all accomplished by [Spree Drop Ship](https://github.com/jdutil/spree_drop_ship).
 
+Integrations
+------------
+
+Spree Marketplace will support several other Spree extensions being used by scoping information by supplier.
+
+Some extensions that can be used in conjunction with Spree Marketplace:
+
+* spree_digital
+* spree_editor (assumes use of ckeditor & you should delete the generated models & initializer in your app to use spree_editors copies)
+* spree_group_pricing
+* spree_marketplace
+* spree_related_products
+
+Please Note: If you intend to use any of these extensions you should install them before installing spree_drop_ship so that spree_drop_ship's migrations are run last.  You should also place spree_drop_ship & spree_marketplace AFTER all other extensions in your Gemfile.
+
 Installation
 ------------
 

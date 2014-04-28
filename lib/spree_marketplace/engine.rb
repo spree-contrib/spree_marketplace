@@ -26,6 +26,22 @@ module SpreeMarketplace
       Spree::Ability.register_ability(Spree::MarketplaceAbility)
     end
 
+    def self.ckeditor_available?
+      @@ckeditor_available ||= ::Rails::Engine.subclasses.map(&:instance).map{ |e| e.class.to_s }.include?('Ckeditor::Engine')
+    end
+
+    def self.spree_digital_available?
+      @@spree_digital_available ||= ::Rails::Engine.subclasses.map(&:instance).map{ |e| e.class.to_s }.include?('SpreeDigital::Engine')
+    end
+
+    def self.spree_group_price_available?
+      @@spree_group_price_available ||= ::Rails::Engine.subclasses.map(&:instance).map{ |e| e.class.to_s }.include?('SpreeGroupPrice::Engine')
+    end
+
+    def self.spree_related_products_available?
+      @@spree_related_procues_available ||= ::Rails::Engine.subclasses.map(&:instance).map{ |e| e.class.to_s }.include?('SpreeRelatedProducts::Engine')
+    end
+
     config.to_prepare &method(:activate).to_proc
   end
 end

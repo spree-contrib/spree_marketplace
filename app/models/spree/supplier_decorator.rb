@@ -22,7 +22,7 @@ Spree::Supplier.class_eval do
     return if self.tax_id.blank? and self.address.blank?
 
     recipient = Stripe::Recipient.create(
-      :name => (self.merchant_type == 'business' ? self.name : self.address.first_name + ' ' + self.address.last_name),
+      :name => (self.merchant_type == 'business' ? self.name : "#{self.address.first_name} #{self.address.last_name}"),
       :type => (self.merchant_type == 'business' ? 'corporation' : "individual"),
       :email => self.email,
       :bank_account => self.bank_accounts.first.try(:token)

@@ -5,3 +5,6 @@ en:
   add_bank_account: Add Bank Account
   bank_accounts: Bank Accounts
   new_bank_account: New Bank Account
+  spree:
+    contacts_first_name: "Contact's First Name"
+    contacts_last_name: "Contact's Last Name"
