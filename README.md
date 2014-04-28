@@ -1,7 +1,7 @@
 SpreeMarketplace
 ================
 
-[![Build Status](https://secure.travis-ci.org/jdutil/spree_marketplace.png)](http://travis-ci.org/jdutil/spree_marketplace)
+[![Build Status](https://travis-ci.org/JDutil/spree_marketplace.svg?branch=master)](https://travis-ci.org/JDutil/spree_marketplace)
 [![Code Climate](https://codeclimate.com/github/jdutil/spree_marketplace.png)](https://codeclimate.com/github/jdutil/spree_marketplace)
 [![Coverage Status](https://coveralls.io/repos/jdutil/spree_marketplace/badge.png?branch=master)](https://coveralls.io/r/jdutil/spree_marketplace)
 [![Dependency Status](https://gemnasium.com/jdutil/spree_marketplace.png?travis)](https://gemnasium.com/jdutil/spree_marketplace)
