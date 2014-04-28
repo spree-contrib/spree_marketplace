@@ -4,4 +4,5 @@ Spree::Core::Engine.routes.draw do
       resources :bank_accounts, controller: 'supplier_bank_accounts'
     end
   end
+  resources :suppliers, only: [:create, :new]
 end
