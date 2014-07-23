@@ -14,11 +14,11 @@ feature 'Supplier Signup', js: true do
   context 'as guest user' do
 
     after do
-      SpreeDropShip::Config.set(allow_signup: false)
+      SpreeMarketplace::Config.set(allow_signup: false)
     end
 
     before do
-      SpreeDropShip::Config.set(allow_signup: true)
+      SpreeMarketplace::Config.set(allow_signup: true)
       visit spree.new_supplier_path
       page.should have_content('LOGIN')
     end
@@ -71,7 +71,7 @@ feature 'Supplier Signup', js: true do
     context 'w/ DropShipConfig[:allow_signup] == false (the default)' do
 
       before do
-        SpreeDropShip::Config.set(allow_signup: false)
+        SpreeMarketplace::Config.set(allow_signup: false)
       end
 
       scenario 'should not be able to create new supplier' do
@@ -88,11 +88,11 @@ feature 'Supplier Signup', js: true do
     context 'w/ DropShipConfig[:allow_signup] == true' do
 
       after do
-        SpreeDropShip::Config.set(allow_signup: false)
+        SpreeMarketplace::Config.set(allow_signup: false)
       end
 
       before do
-        SpreeDropShip::Config.set(allow_signup: true)
+        SpreeMarketplace::Config.set(allow_signup: true)
         visit spree.account_path
       end
 

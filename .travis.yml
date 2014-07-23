@@ -5,13 +5,9 @@ script:
   - "export DISPLAY=:99.0"
   - "bundle exec rspec spec"
 rvm:
-  - 1.9.3
   - 2.0.0
-  - ruby-head
+  - 2.1.2
 language: ruby
-matrix:
-  allow_failures:
-    - rvm: ruby-head
 notifications:
   recipients:
-    - JDutil@BurlingtonWebApps.com
+    - JDutil@SpreeCommerce.com

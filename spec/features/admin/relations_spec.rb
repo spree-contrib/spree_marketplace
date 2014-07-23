@@ -7,14 +7,15 @@ feature 'Admin - Product Relation Management', js: true do
     @user = create(:supplier_user)
     @supplier1 = @user.supplier
     @supplier2 = create(:supplier)
-    @product1 = create :product, supplier: @supplier1
+    @product1 = create :product
+    @product1.add_supplier! @supplier1
     # TODO shoudl we allow them to relate to anyones product or only their own?
     @product2 = create :product
   end
 
   context 'as Supplier' do
     scenario 'should be able to add relations' do
-      pending 'for some reason targetted_select2_search is not working properly'
+      skip 'for some reason targetted_select2_search is not working properly'
       login_user @user
       visit spree.related_admin_product_path(@product1)
       targetted_select2_search @product2.name, from: 'Name or SKU'

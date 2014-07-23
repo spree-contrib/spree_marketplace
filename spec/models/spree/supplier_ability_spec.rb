@@ -21,16 +21,24 @@ describe Spree::SupplierAbility do
   context 'for Digital' do
     let(:resource) { Spree::Digital }
 
-    # it_should_behave_like 'index allowed'
-    # it_should_behave_like 'admin granted'
+    it_should_behave_like 'index allowed'
+    it_should_behave_like 'admin granted'
 
     context 'requested by another suppliers user' do
-      let(:resource) { Spree::Digital.new({variant: create(:product, supplier: create(:supplier)).master}, without_protection: true) }
+      let(:resource) {
+        p = create :product
+        p.add_supplier! create(:supplier)
+        Spree::Digital.new(variant: p.reload.master)
+      }
       it_should_behave_like 'create only'
     end
 
     context 'requested by suppliers user' do
-      let(:resource) { Spree::Digital.new({variant: create(:product, supplier: user.supplier).master}, without_protection: true) }
+      let(:resource) {
+        p = create :product
+        p.add_supplier! user.supplier
+        Spree::Digital.new(variant: p.reload.master)
+      }
       it_should_behave_like 'access granted'
     end
   end
@@ -42,31 +50,45 @@ describe Spree::SupplierAbility do
     it_should_behave_like 'admin granted'
 
     context 'requested by another suppliers user' do
-      let(:variant) { create(:variant, product: create(:product, supplier: create(:supplier))) }
+      let(:variant) {
+        p = create :product
+        p.add_supplier! create(:supplier)
+        p.master
+      }
       let(:resource) { Spree::Image.new({viewable_id: variant.id, viewable_type: variant.class.to_s}, without_protection: true) }
       it_should_behave_like 'create only'
     end
 
     context 'requested by suppliers user' do
-      let(:variant) { create(:variant, product: create(:product, supplier: user.supplier)) }
+      let(:variant) {
+        p = create :product
+        p.add_supplier! user.supplier
+        p.master
+      }
       let(:resource) { Spree::Image.new({viewable_id: variant.id, viewable_type: variant.class.to_s}, without_protection: true) }
       it_should_behave_like 'access granted'
     end
   end
 
-  if defined?(Spree::GroupPrice)
-    context 'for GroupPricing' do
-      let(:resource) { Spree::GroupPrice.new }
+  context 'for GroupPricing' do
+    let(:resource) { Spree::GroupPrice }
 
-      context 'requested by another suppliers user' do
-        let(:resource) { Spree::GroupPrice.new({variant: create(:variant, product: create(:product, supplier: create(:supplier)))}, without_protection: true) }
-        it_should_behave_like 'access denied'
-      end
+    context 'requested by another suppliers user' do
+      let(:resource) {
+        p = create :product
+        p.add_supplier! create(:supplier)
+        Spree::GroupPrice.new(variant: p.reload.master)
+      }
+      it_should_behave_like 'access denied'
+    end
 
-      context 'requested by suppliers user' do
-        let(:resource) { Spree::GroupPrice.new({variant: create(:variant, product: create(:product, supplier: user.supplier))}, without_protection: true) }
-        it_should_behave_like 'access granted'
-      end
+    context 'requested by suppliers user' do
+      let(:resource) {
+        p = create :product
+        p.add_supplier! user.supplier
+        Spree::GroupPrice.new(variant: p.reload.master)
+      }
+      it_should_behave_like 'access granted'
     end
   end
 
@@ -77,12 +99,20 @@ describe Spree::SupplierAbility do
     it_should_behave_like 'admin granted'
 
     context 'requested by another suppliers user' do
-      let(:resource) { Spree::Product.new({supplier: create(:supplier)}, without_protection: true) }
-      it_should_behave_like 'create only'
+      let(:resource) {
+        p = create :product
+        p.add_supplier! create(:supplier)
+        p
+      }
+      it { ability.should be_able_to :create, resource }
     end
 
     context 'requested by suppliers user' do
-      let(:resource) { Spree::Product.new({supplier: user.supplier}, without_protection: true) }
+      let(:resource) {
+        p = create :product
+        p.add_supplier! user.supplier
+        p.reload
+      }
       it_should_behave_like 'access granted'
     end
   end
@@ -94,12 +124,20 @@ describe Spree::SupplierAbility do
     it_should_behave_like 'admin granted'
 
     context 'requested by another suppliers user' do
-      let(:resource) { Spree::ProductProperty.new({product: create(:product, supplier: create(:supplier))}, without_protection: true) }
+      let(:resource) {
+        p = create :product
+        p.add_supplier! create(:supplier)
+        Spree::ProductProperty.new(product: p.reload)
+      }
       it_should_behave_like 'access denied'
     end
 
     context 'requested by suppliers user' do
-      let(:resource) { Spree::ProductProperty.new({product: create(:product, supplier: user.supplier)}, without_protection: true) }
+      let(:resource) {
+        p = create :product
+        p.add_supplier! user.supplier
+        Spree::ProductProperty.new(product: p.reload)
+      }
       it_should_behave_like 'access granted'
     end
   end
@@ -121,16 +159,24 @@ describe Spree::SupplierAbility do
   context 'for Relation' do
     let(:resource) { Spree::Relation }
 
-    # it_should_behave_like 'index allowed'
-    # it_should_behave_like 'admin granted'
+    it_should_behave_like 'index allowed'
+    it_should_behave_like 'admin granted'
 
     context 'requested by another suppliers user' do
-      let(:resource) { Spree::Relation.new({relatable: create(:product, supplier: create(:supplier))}, without_protection: true) }
+      let(:resource) {
+        p = create :product
+        p.add_supplier! create(:supplier)
+        Spree::Relation.new(relatable: p.reload)
+      }
       it_should_behave_like 'access denied'
     end
 
     context 'requested by suppliers user' do
-      let(:resource) { Spree::Relation.new({relatable: create(:product, supplier: user.supplier)}, without_protection: true) }
+      let(:resource) {
+        p = create :product
+        p.add_supplier! user.supplier
+        Spree::Relation.new(relatable: p.reload)
+      }
       it_should_behave_like 'access granted'
     end
   end
@@ -175,12 +221,21 @@ describe Spree::SupplierAbility do
     it_should_behave_like 'admin granted'
 
     context 'requested by another suppliers user' do
-      let(:resource) { Spree::StockItem.new({variant: create(:product, supplier: create(:supplier)).master}, without_protection: true) }
+      let(:resource) {
+        p = create :product
+        supplier = create(:supplier)
+        p.add_supplier! supplier
+        Spree::StockItem.new(stock_location_id: supplier.stock_locations.first.id)
+      }
       it_should_behave_like 'access denied'
     end
 
     context 'requested by suppliers user' do
-      let(:resource) { Spree::StockItem.new({variant: create(:product, supplier: user.supplier).master}, without_protection: true) }
+      let(:resource) {
+        p = create :product
+        p.add_supplier! user.supplier
+        Spree::StockItem.new(stock_location_id: user.supplier.stock_locations.first.id)
+      }
       it_should_behave_like 'access granted'
     end
   end
@@ -206,12 +261,21 @@ describe Spree::SupplierAbility do
     it_should_behave_like 'admin granted'
 
     context 'requested by another suppliers user' do
-      let(:resource) { Spree::StockMovement.new({stock_item: build(:stock_item, variant: create(:product, supplier: create(:supplier)).master)}, without_protection: true) }
+      let(:resource) {
+        p = create :product
+        supplier = create(:supplier)
+        p.add_supplier! supplier
+        Spree::StockMovement.new stock_item: p.master.stock_items.where(stock_location_id: supplier.stock_locations.pluck(:id)).first
+      }
       it_should_behave_like 'create only'
     end
 
     context 'requested by suppliers user' do
-      let(:resource) { Spree::StockMovement.new({stock_item: build(:stock_item, variant: create(:product, supplier: user.supplier).master)}, without_protection: true) }
+      let(:resource) {
+        p = create :product
+        p.add_supplier! user.supplier
+        Spree::StockMovement.new stock_item: p.master.stock_items.where(stock_location_id: user.supplier.stock_locations.pluck(:id)).first
+      }
       it_should_behave_like 'access granted'
     end
   end
@@ -223,16 +287,16 @@ describe Spree::SupplierAbility do
 
       it_should_behave_like 'admin denied'
 
-      context 'w/ DropShipConfig[:allow_signup] == false (the default)' do
+      context 'w/ Marketplace Config[:allow_signup] == false (the default)' do
         it_should_behave_like 'access denied'
       end
 
-      context 'w/ DropShipConfig[:allow_signup] == true' do
+      context 'w/ Marketplace Config[:allow_signup] == true' do
         after do
-          SpreeDropShip::Config.set allow_signup: false
+          SpreeMarketplace::Config.set allow_signup: false
         end
         before do
-          SpreeDropShip::Config.set allow_signup: true
+          SpreeMarketplace::Config.set allow_signup: true
         end
         it_should_behave_like 'create only'
       end
@@ -252,12 +316,20 @@ describe Spree::SupplierAbility do
     it_should_behave_like 'admin granted'
 
     context 'requested by another suppliers user' do
-      let(:resource) { Spree::Variant.new({product: create(:product, supplier: create(:supplier))}, without_protection: true) }
+      let(:resource) {
+        p = create :product
+        p.add_supplier! create(:supplier)
+        p.reload.master
+      }
       it_should_behave_like 'access denied'
     end
 
     context 'requested by suppliers user' do
-      let(:resource) { Spree::Variant.new({product: create(:product, supplier: user.supplier)}, without_protection: true) }
+      let(:resource) {
+        p = create :product
+        p.add_supplier! user.supplier
+        p.reload.master
+      }
       it_should_behave_like 'access granted'
     end
   end

@@ -1,0 +1,23 @@
+<%= render partial: 'spree/admin/shared/configuration_menu' %>
+
+<% content_for :page_title do %>
+  <%= Spree.t(:marketplace_settings) %>
+<% end %>
+
+<%= form_tag(spree.admin_marketplace_settings_path, method: :put) do %>
+  <fieldset class="general no-border-top">
+    <% %w(allow_signup ).each do |key|
+      type = SpreeMarketplace::Config.preference_type(key) %>
+      <div class="field">
+        <%= label_tag(key, Spree.t(key) + ': ') + tag(:br) if type != :boolean %>
+        <%= preference_field_tag(key, SpreeMarketplace::Config[key], :type => type) %>
+        <%= label_tag(key, Spree.t(key)) + tag(:br) if type == :boolean %>
+      </div>
+    <% end %>
+    <div class="form-buttons filter-actions actions" data-hook="buttons">
+      <%= button Spree.t(:update), 'fa fa-refresh' %>
+      <span class="or"><%= Spree.t(:or) %></span>
+      <%= link_to_with_icon 'remove', Spree.t(:cancel), spree.edit_admin_marketplace_settings_url, :class => 'button' %>
+    </div>
+  </fieldset>
+<% end %>

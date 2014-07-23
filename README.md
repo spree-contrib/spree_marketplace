@@ -23,7 +23,7 @@ Some extensions that can be used in conjunction with Spree Marketplace:
 * spree_marketplace
 * spree_related_products
 
-Please Note: If you intend to use any of these extensions you should install them before installing spree_drop_ship so that spree_drop_ship's migrations are run last.  You should also place spree_drop_ship & spree_marketplace AFTER all other extensions in your Gemfile.
+Please Note: If you intend to use any of these extensions you should install them before installing spree_marketplace so that spree_marketplace's migrations are run last.  You should also place spree_drop_ship & spree_marketplace AFTER all other extensions in your Gemfile.
 
 Installation
 ------------
@@ -80,5 +80,6 @@ TODO
 - On dso complete credit supplier bank account
 - On order complete credit marketplace bank account w/commission
 - On order complete credit marketplace bank account w/tax?
+- Refactor to not rely on stripe & be interchangeable.
 
 Copyright (c) 2013 [Jeff Dutil](https://github.com/jdutil), released under the New BSD License

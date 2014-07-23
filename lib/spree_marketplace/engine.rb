@@ -35,7 +35,7 @@ module SpreeMarketplace
     end
 
     def self.spree_group_price_available?
-      @@spree_group_price_available ||= ::Rails::Engine.subclasses.map(&:instance).map{ |e| e.class.to_s }.include?('SpreeGroupPrice::Engine')
+      @@spree_group_price_available ||= ::Rails::Engine.subclasses.map(&:instance).map{ |e| e.class.to_s }.include?('SpreeGroupPricing::Engine')
     end
 
     def self.spree_related_products_available?

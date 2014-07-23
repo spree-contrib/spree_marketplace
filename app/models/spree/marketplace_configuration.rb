@@ -1,6 +1,9 @@
 module Spree
   class MarketplaceConfiguration < Preferences::Configuration
 
+    # Allow users to signup as a supplier.
+    preference :allow_signup, :boolean, default: false
+
     # Sets Stripe api configuration.
     preference :stripe_publishable_key, :string, default: -> {
       if ActiveRecord::Base.connection.table_exists?(:spree_payment_methods)
