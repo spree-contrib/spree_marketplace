@@ -76,10 +76,13 @@ require 'spree_marketplace/factories'
 TODO
 ----
 
+- stop overridding spree_drop_ship's supplier ability if possible
+- update product management of products
 - permit attributes in controller
 - On dso complete credit supplier bank account
 - On order complete credit marketplace bank account w/commission
 - On order complete credit marketplace bank account w/tax?
 - Refactor to not rely on stripe & be interchangeable.
+- suppliers should be able to manage option types and values (unsure about whether to scope to supplier or not, but thats probably best solution for everyone)
 
-Copyright (c) 2013 [Jeff Dutil](https://github.com/jdutil), released under the New BSD License
+Copyright (c) 2013-2014+ [Jeff Dutil](https://github.com/jdutil), released under the New BSD License

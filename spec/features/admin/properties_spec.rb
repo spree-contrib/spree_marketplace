@@ -67,6 +67,7 @@ describe "Admin - Properties" do
 
     context "linking a property to a product", js: true do
       before do
+        skip 'Still need to add proper support for managing products'
         p = create(:product)
         p.add_supplier! @supplier
 
