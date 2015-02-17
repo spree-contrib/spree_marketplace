@@ -17,7 +17,7 @@ Gem::Specification.new do |s|
   s.requirements << 'none'
 
   s.add_dependency 'stripe'
-  s.add_dependency 'spree_core', '~> 2.3.0'
+  s.add_dependency 'spree_core'#, '~> 2.3.0'
   s.add_dependency 'spree_drop_ship'
 
   s.add_development_dependency 'capybara', '~> 2.2'
@@ -35,7 +35,7 @@ Gem::Specification.new do |s|
   s.add_development_dependency 'spree_editor'
   s.add_development_dependency 'spree_group_pricing'
   s.add_development_dependency 'spree_related_products'
-  s.add_development_dependency 'sqlite3'
+  #s.add_development_dependency 'sqlite3'
   s.add_development_dependency 'vcr'
   s.add_development_dependency 'webmock'
 end
