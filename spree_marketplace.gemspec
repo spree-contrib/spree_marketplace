@@ -1,4 +1,3 @@
-# encoding: UTF-8
 Gem::Specification.new do |s|
   s.platform    = Gem::Platform::RUBY
   s.name        = 'spree_marketplace'
@@ -17,7 +16,7 @@ Gem::Specification.new do |s|
   s.requirements << 'none'
 
   s.add_dependency 'stripe'
-  s.add_dependency 'spree_core', '~> 2.3.0'
+  s.add_dependency 'spree_core', '~> 3.0.0'
   s.add_dependency 'spree_drop_ship'
 
   s.add_development_dependency 'capybara', '~> 2.2'
