@@ -1,7 +1,9 @@
+require 'spree_marketplace/version'
+
 Gem::Specification.new do |s|
   s.platform    = Gem::Platform::RUBY
   s.name        = 'spree_marketplace'
-  s.version     = '2.0.0.beta'
+  s.version     = SpreeMarketplace.version
   s.summary     = 'Enable Spree to work as a Marketplace.'
   s.description = 'By extending Spree Drop Ship to enable supplier payments Spree works as a Marketplace.'
   s.required_ruby_version = '>= 2.0.0'
@@ -16,7 +18,7 @@ Gem::Specification.new do |s|
   s.requirements << 'none'
 
   s.add_dependency 'stripe'
-  s.add_dependency 'spree_core', '~> 3.0.0'
+  s.add_dependency 'spree_core', '~> 3.0.8'
   s.add_dependency 'spree_drop_ship'
 
   s.add_development_dependency 'capybara', '~> 2.2'
