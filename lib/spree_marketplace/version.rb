@@ -11,8 +11,8 @@ module SpreeMarketplace
     MAJOR = 3
     MINOR = 1
     TINY  = 0
-    PRE   = 'alpha'.freeze
+    PRE   = "alpha".freeze
 
-    STRING = [MAJOR, MINOR, TINY].compact.join('.')
+    STRING = [MAJOR, MINOR, TINY].compact.join(".")
   end
 end
