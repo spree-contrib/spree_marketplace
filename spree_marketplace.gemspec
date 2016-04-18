@@ -1,5 +1,6 @@
 lib = File.expand_path('../lib/', __FILE__)
 $LOAD_PATH.unshift lib unless $LOAD_PATH.include?(lib)
+
 require 'spree_marketplace/version'
 
 Gem::Specification.new do |s|
@@ -21,7 +22,7 @@ Gem::Specification.new do |s|
 
   s.add_dependency 'stripe'
   s.add_dependency 'spree_core', '~> 3.0.8'
-  s.add_dependency 'spree_drop_ship'
+  s.add_dependency 'spree_drop_ship', '~> 3.0.0'
 
   s.add_development_dependency 'capybara', '~> 2.2'
   s.add_development_dependency 'coffee-rails'
