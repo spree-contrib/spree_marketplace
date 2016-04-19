@@ -3,7 +3,6 @@ source 'https://rubygems.org'
 group :development, :test do
   spree_branch = '3-0-stable'
   gem 'spree',                  github: 'spree/spree',                          branch: spree_branch
-  gem 'spree_auth_devise',      github: 'spree-contrib/spree_auth_devise',      branch: spree_branch
   gem 'spree_drop_ship',        github: 'spree-contrib/spree_drop_ship',        branch: spree_branch
   gem 'spree_digital',          github: 'spree-contrib/spree_digital',          branch: spree_branch
   gem 'spree_editor',           github: 'spree-contrib/spree_editor',           branch: spree_branch
