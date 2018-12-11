@@ -3,10 +3,10 @@
 SpreeMarketplace
 ================
 
-[![Build Status](https://travis-ci.org/JDutil/spree_marketplace.svg?branch=master)](https://travis-ci.org/JDutil/spree_marketplace)
-[![Code Climate](https://codeclimate.com/github/jdutil/spree_marketplace.png)](https://codeclimate.com/github/jdutil/spree_marketplace)
-[![Coverage Status](https://coveralls.io/repos/jdutil/spree_marketplace/badge.png?branch=master)](https://coveralls.io/r/jdutil/spree_marketplace)
-[![Dependency Status](https://gemnasium.com/jdutil/spree_marketplace.png?travis)](https://gemnasium.com/jdutil/spree_marketplace)
+[![Build Status](https://travis-ci.org/spree-contrib/spree_marketplace.svg?branch=master)](https://travis-ci.org/spree-contrib/spree_marketplace)
+[![Code Climate](https://codeclimate.com/github/spree-contrib/spree_marketplace.png)](https://codeclimate.com/github/spree-contrib/spree_marketplace)
+[![Coverage Status](https://coveralls.io/repos/spree-contrib/spree_marketplace/badge.png?branch=master)](https://coveralls.io/r/spree-contrib/spree_marketplace)
+[![Dependency Status](https://gemnasium.com/spree-contrib/spree_marketplace.png?travis)](https://gemnasium.com/spree-contrib/spree_marketplace)
 
 Spree Marketplace uses the [Spree Drop Ship](https://github.com/jdutil/spree_drop_ship) extension in order to enable using Spree as a Marketplace.  Mainly all that really means is that this extension enables sending payments to your drop ship suppliers through [Stripe](https://stripe.com) with their payment service.
 
@@ -21,7 +21,6 @@ Some extensions that can be used in conjunction with Spree Marketplace:
 
 * spree_digital
 * spree_editor (assumes use of ckeditor & you should delete the generated models & initializer in your app to use spree_editors copies)
-* spree_group_pricing
 * spree_marketplace
 * spree_related_products
 
@@ -33,7 +32,7 @@ Installation
 Add spree_marketplace to your Gemfile:
 
 ```ruby
-gem 'spree_marketplace', github: 'jdutil/spree_marketplace'
+gem 'spree_marketplace', github: 'spree-contrib/spree_marketplace'
 ```
 
 Bundle your dependencies and run the installation generator:
