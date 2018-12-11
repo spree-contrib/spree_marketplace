@@ -1,3 +1,5 @@
+### Check out the latest, officially maintained [Spree Multi Vendor marketplace](https://github.com/spree-contrib/spree_multi_vendor) extension
+
 SpreeMarketplace
 ================
 
